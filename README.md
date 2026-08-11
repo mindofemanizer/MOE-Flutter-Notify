@@ -9,7 +9,7 @@ dependencies:
   moe_flutter_notify:
     git:
       url: https://github.com/mindofemanizer/MOE-Flutter-Notify.git
-      ref: master
+      ref: main
 ```
 
 ## Usage
