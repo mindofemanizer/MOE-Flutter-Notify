@@ -1,6 +1,6 @@
 # MOE-Flutter-Notify
 
-Notification package for MOE Flutter ecosystem — push notification, in-app notification, multi-channel.
+Notification package for MOE Flutter ecosystem â€” push notification, in-app notification, multi-channel.
 
 ## Installation
 
@@ -9,7 +9,7 @@ dependencies:
   moe_flutter_notify:
     git:
       url: https://github.com/mindofemanizer/MOE-Flutter-Notify.git
-      ref: master
+      ref: v1.0.0
 ```
 
 ## Usage
