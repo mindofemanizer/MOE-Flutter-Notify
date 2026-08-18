@@ -36,7 +36,7 @@ void main() {
     });
 
     test('toJson round-trips correctly', () {
-      const model = InAppNotificationModel(
+      final model = InAppNotificationModel(
         id: 'test',
         title: 'Title',
         message: 'Message',
@@ -54,7 +54,7 @@ void main() {
     });
 
     test('copyWith updates fields', () {
-      const original = InAppNotificationModel(
+      final original = InAppNotificationModel(
         id: 'test',
         title: 'Title',
         message: 'Message',
@@ -70,7 +70,7 @@ void main() {
     });
 
     test('default values', () {
-      const model = InAppNotificationModel(
+      final model = InAppNotificationModel(
         id: 'test',
         title: 'Title',
         message: 'Message',

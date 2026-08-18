@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 /// Notification type enum.
 enum NotificationType {
   info,

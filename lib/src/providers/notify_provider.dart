@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:moe_flutter_core/moe_flutter_core.dart';
-import 'package:moe_flutter_notify/src/config/notify_config.dart';
 import 'package:moe_flutter_notify/src/models/notification_model.dart';
 
 /// State for in-app notifications.
@@ -9,7 +8,9 @@ sealed class InAppNotificationsState {
   const InAppNotificationsState();
 }
 
-final class InAppNotificationsInitial extends InAppNotificationsState {}
+final class InAppNotificationsInitial extends InAppNotificationsState {
+  const InAppNotificationsInitial();
+}
 
 final class InAppNotificationsLoaded extends InAppNotificationsState {
   final List<InAppNotificationModel> notifications;
@@ -22,10 +23,9 @@ final class InAppNotificationsError extends InAppNotificationsState {
 }
 
 /// Notifier for in-app notifications.
-class InAppNotificationsNotifier extends StateNotifier<InAppNotificationsState> {
-  final Ref _ref;
-
-  InAppNotificationsNotifier(this._ref) : super(const InAppNotificationsInitial());
+class InAppNotificationsNotifier
+    extends StateNotifier<InAppNotificationsState> {
+  InAppNotificationsNotifier(Ref _) : super(const InAppNotificationsInitial());
 
   Future<void> load() async {
     // Mock implementation — replace with API call when available
@@ -50,19 +50,24 @@ class InAppNotificationsNotifier extends StateNotifier<InAppNotificationsState> 
     if (state is! InAppNotificationsLoaded) return;
 
     final loaded = state as InAppNotificationsLoaded;
-    final updated = loaded.notifications.map((n) => n.copyWith(isRead: true)).toList();
+    final updated =
+        loaded.notifications.map((n) => n.copyWith(isRead: true)).toList();
 
     state = InAppNotificationsLoaded(updated);
   }
 
   int get unreadCount {
     if (state is! InAppNotificationsLoaded) return 0;
-    return (state as InAppNotificationsLoaded).notifications.where((n) => !n.isRead).length;
+    return (state as InAppNotificationsLoaded)
+        .notifications
+        .where((n) => !n.isRead)
+        .length;
   }
 }
 
 /// Provider for InAppNotificationsNotifier.
 final inAppNotificationsProvider =
-    StateNotifierProvider<InAppNotificationsNotifier, InAppNotificationsState>((ref) {
+    StateNotifierProvider<InAppNotificationsNotifier, InAppNotificationsState>(
+        (ref) {
   return InAppNotificationsNotifier(ref);
 });
